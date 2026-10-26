@@ -1,4 +1,4 @@
-# Arrakis [![License: MIT + CC BY 4.0](https://img.shields.io/badge/license-MIT%20%2B%20CC%20BY--4.0-29ABE2)](#license) [![Buy Me A Coffee](https://img.shields.io/static/v1?label=&message=%E2%98%95%20Buy%20Me%20A%20Coffee&color=FFDD00)](https://www.buymeacoffee.com/bkahlert)
+# <img src="docs/logo.svg" align="left" width="36" height="36" alt="Arrakis orbit logo" style="margin-right: 0.5rem"> Arrakis [![License: MIT + CC BY 4.0](https://img.shields.io/badge/license-MIT%20%2B%20CC%20BY--4.0-29ABE2)](#license) [![Buy Me A Coffee](https://img.shields.io/static/v1?label=&message=%E2%98%95%20Buy%20Me%20A%20Coffee&color=FFDD00)](https://www.buymeacoffee.com/bkahlert)
 
 Animated backgrounds inspired by Dune's deserts and planetary orbits. Each background ships as a WebGL runtime, a native web component, an animated SVG, and a still SVG.
 
@@ -17,6 +17,8 @@ The comparison pages show the live WebGL, component, and SVG variants. The packa
 
 Node.js 22 or newer is required. Build a background from the repository root:
 
+Regenerate the repository logo with `node tools/build-logo.mjs`.
+
 ```shell
 npm install
 npm run build --workspace=packages/arrakis-desert
@@ -26,4 +28,4 @@ Run `npm run build --workspaces --if-present` to build every background.
 
 ## Credits and licenses
 
-Original software is licensed under MIT. Texture assets and finished visual outputs that incorporate them are licensed under CC BY 4.0. Each package includes its license terms and credits, with the source, license link, and modification details for its textures.
+Original software is licensed under MIT. Texture assets and finished visual outputs that incorporate them, including the repository logo, are licensed under CC BY 4.0. The logo reuses the Arrakis Orbit (1984) sphere renders; source and modification credits are in [that package's credits](packages/arrakis-orbit-1984/CREDITS.txt). Each package includes its own license terms and texture credits.
