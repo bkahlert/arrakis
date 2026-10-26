@@ -17,5 +17,14 @@
     "type": "git",
     "url": "https://github.com/bkahlert/arrakis.git",
     "directory": "packages/arrakis-desert-1984"
-  }
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "files": [
+    "webgl",
+    "webcomponent",
+    "svg",
+    "README.md",
+    "LICENSE",
+    "CREDITS.txt"
+  ]
 }

@@ -5,7 +5,7 @@ The upper moon sits right; the lower moon sits left behind the dunes.
 
 [![Arrakis Desert (1984)](svg/arrakis-desert-1984.svg)](svg/arrakis-desert-1984.svg)
 
-Open the [comparison](index.html) to compare the three formats.
+Open the [comparison](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-desert-1984/index.html) to compare the three formats.
 Each distribution folder can be copied into an unrelated HTTP root:
 
 | Format           | Entry                                              | Integration                                   |
@@ -41,7 +41,7 @@ Texture and fallback URLs resolve beside the module, including nested paths.
 
 ## Renderer
 
-[Canonical source](src/scene.js) exports `mountDesert(root, { assetBase })`.
+[Canonical source](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-desert-1984/src/scene.js) exports `mountDesert(root, { assetBase })`.
 The root must have dimensions. The optional asset base identifies the texture folder.
 The returned controller provides `ready`, `pause()`, `resume()`, and `dispose()`.
 Repeated mounts of one root return its existing controller until disposal.
@@ -74,15 +74,15 @@ Node.js 22 or newer is required. Development dependencies are pinned in the lock
 ```shell
 npm ci
 npx playwright install chromium webkit
-npm run build
-npm run check:generated
-npm test
-npm run serve
+npm run build --workspace=packages/arrakis-desert-1984
+npm run check:generated --workspace=packages/arrakis-desert-1984
+npm test --workspace=packages/arrakis-desert-1984
+npm run serve --workspace=packages/arrakis-desert-1984
 ```
 
 The server uses port 4185; `PORT` overrides it.
-[Build scripts](scripts) generate the WebGL copy, component bundle, and SVG assets.
-[The manifest](build-manifest.json) records input and output SHA-256 hashes.
+[Build scripts](https://github.com/bkahlert/arrakis/tree/main/packages/arrakis-desert-1984/scripts) generate the WebGL copy, component bundle, and SVG assets.
+[The manifest](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-desert-1984/build-manifest.json) records input and output SHA-256 hashes.
 `check:generated` checks freshness without rebuilding.
 Committed generated duplication keeps every runtime folder independently copyable.
 
@@ -93,6 +93,10 @@ focus easing, visibility, reduced motion, and disposal during texture loading.
 
 ## Credits
 
-[Asset credits](src/assets/CREDITS.txt) identify the Solar System Scope moon texture,
+[Asset credits](CREDITS.txt) identify the Solar System Scope moon texture,
 licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 Terrain, dust, composition, and crimson recoloring are original procedural artwork.
+
+## License
+
+MIT applies to the original software code. Third-party textures and finished visual outputs incorporating them are licensed under CC BY 4.0. See [LICENSE](LICENSE) and [CREDITS](CREDITS.txt) for terms and attribution.

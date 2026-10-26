@@ -17,5 +17,14 @@
   },
   "engines": {
     "node": ">=22"
-  }
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "files": [
+    "webgl",
+    "webcomponent",
+    "svg",
+    "README.md",
+    "LICENSE",
+    "CREDITS.txt"
+  ]
 }

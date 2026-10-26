@@ -5,7 +5,7 @@ a small moon, and a layered starfield.
 
 [![Arrakis Orbit](svg/arrakis-orbit.svg)](svg/arrakis-orbit.svg)
 
-Open [index.html](index.html) to compare
+Open [comparison page](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-orbit/index.html) to compare
 three formats side by side. The comparison scrolls horizontally on narrow screens.
 Live iframe previews follow frame focus; click a live preview to animate it.
 Each variant page contains only its background:
@@ -18,7 +18,7 @@ Each variant page contains only its background:
 
 ## Run and build
 
-Node.js 22 or newer is supported. Install pinned dependencies:
+Node.js 22 or newer is supported. Run source commands from the repository root:
 
 ```shell
 npm ci
@@ -27,19 +27,19 @@ npm ci
 Start the server and open its printed URL. `PORT` overrides the default 4174:
 
 ```shell
-npm run serve
+npm run serve --workspace=packages/arrakis-orbit
 ```
 
 Check committed artifacts against their recorded source hashes:
 
 ```shell
-npm run check:generated
+npm run check:generated --workspace=packages/arrakis-orbit
 ```
 
 Regenerate the component, page bundle, animated SVG, and still SVG:
 
 ```shell
-npm run build
+npm run build --workspace=packages/arrakis-orbit
 ```
 
 Install browser engines before the first test run:
@@ -51,7 +51,7 @@ npx playwright install chromium webkit
 Run every automated check:
 
 ```shell
-npm test
+npm test --workspace=packages/arrakis-orbit
 ```
 
 Each variant folder is a complete runtime distribution. Copy `webgl`,
@@ -60,8 +60,8 @@ Each variant folder is a complete runtime distribution. Copy `webgl`,
 Direct `file:` loading does not support browser modules reliably.
 
 The full project is only needed for editing and rebuilding. Canonical renderer,
-styles, and [artwork](src/assets/CREDITS.txt) live in [src](src); generators and the
-server live in [scripts](scripts). The [build manifest](build-manifest.json)
+styles, and [credits](CREDITS.txt) live in [src](https://github.com/bkahlert/arrakis/tree/main/packages/arrakis-orbit/src); generators and the
+server live in [scripts](https://github.com/bkahlert/arrakis/tree/main/packages/arrakis-orbit/scripts). The [build manifest](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-orbit/build-manifest.json)
 records build inputs and outputs for freshness checks.
 Builds copy required assets into each live variant and bundle its styles and fallback.
 
@@ -107,8 +107,8 @@ query. Keep that query when embedding the animated CSS background.
 
 ## Attribution and tests
 
-[Asset credits](src/assets/CREDITS.txt) retain licenses, source URLs, and adaptation details.
-The [texture utility](scripts/prepare_textures.py) recreates the JPEG maps with Pillow
+[Asset credits](CREDITS.txt) retain licenses, source URLs, and adaptation details.
+The [texture utility](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-orbit/scripts/prepare_textures.py) recreates the JPEG maps with Pillow
 from local `mars.jpg`, `clouds.jpg`, and `moon.jpg` source maps. Pass `--source-dir`
 and a new `--output-dir`; add `--download` to fetch missing sources. Normal builds
 use the checked-in maps without network or Python dependencies.
@@ -124,3 +124,7 @@ cover animation, reduced motion, self-containment, and generated-artifact freshn
 Screenshots are retained in `test-results`.
 
 Physical devices, GPU drivers, and production hosting require separate verification.
+
+## License
+
+MIT applies to the original software code. Third-party textures and finished visual outputs incorporating them are licensed under CC BY 4.0. See [LICENSE](LICENSE) and [CREDITS](CREDITS.txt) for terms and attribution.

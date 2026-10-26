@@ -5,7 +5,7 @@ This directory is a standalone project. Copy it anywhere without its parent repo
 
 [![Arrakis Desert](svg/arrakis-desert.svg)](svg/arrakis-desert.svg)
 
-Open [index.html](index.html) to compare all three variants side by side.
+Open [comparison page](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-desert/index.html) to compare all three variants side by side.
 The labeled iframe panels remain in one row and scroll horizontally on narrow screens.
 Live iframe previews follow frame focus; click a live preview to animate it.
 
@@ -20,14 +20,14 @@ Both moons intentionally crop at some viewport edges.
 
 ## Run
 
-Install Node.js 22 or newer, then run these commands inside this directory:
+Install Node.js 22 or newer. Run source commands from the repository root:
 
 ```shell
 npm ci
 npx playwright install chromium webkit
-npm run build
-npm test
-npm run serve
+npm run build --workspace=packages/arrakis-desert
+npm test --workspace=packages/arrakis-desert
+npm run serve --workspace=packages/arrakis-desert
 ```
 
 Open [the local server](http://127.0.0.1:4173).
@@ -94,19 +94,19 @@ Its host must select the still SVG using the media query above; [svg/index.html]
 
 ## Sources and verification
 
-Canonical code and assets live in [src](src); edit those files and rebuild.
-[Build scripts](scripts) copy the WebGL files and assets, bundle the component,
+Canonical code and assets live in [src](https://github.com/bkahlert/arrakis/tree/main/packages/arrakis-desert/src); edit those files and rebuild.
+[Build scripts](https://github.com/bkahlert/arrakis/tree/main/packages/arrakis-desert/scripts) copy the WebGL files and assets, bundle the component,
 and generate self-contained SVGs plus local fallback copies.
 Renderer files and assets inside the variants are generated from these shared sources.
 
-The [component](src/component.js) and [renderer](src/scene.js) are bundled with esbuild.
-The [SVG generator](scripts/build-svg.mjs) calls the shared renderer directly in Chromium.
+The [component](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-desert/src/component.js) and [renderer](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-desert/src/scene.js) are bundled with esbuild.
+The [SVG generator](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-desert/scripts/build-svg.mjs) calls the shared renderer directly in Chromium.
 It embeds the scene, depth masks, and original dust sprite into the SVG outputs.
-The [build manifest](build-manifest.json) records source and output hashes;
-`npm run check:generated` rejects stale generated files before a rebuild. Rebuild after editing artwork or styles.
+The [build manifest](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-desert/build-manifest.json) records source and output hashes;
+`npm run check:generated --workspace=packages/arrakis-desert` rejects stale generated files before a rebuild. Rebuild after editing artwork or styles.
 Rendering can vary slightly between GPU drivers, so generated JPEG bytes may vary.
 
-`npm test` runs the adapted upstream lifecycle suite and both browsers' real-page tests.
+`npm test --workspace=packages/arrakis-desert` runs the adapted upstream lifecycle suite and both browsers' real-page tests.
 Coverage includes both crescent landmarks independently, dunes, visible foreground storm
 motion, reduced motion, GPU limits, shaders, textures, framebuffers, focus easing,
 visibility, context loss, mounting, disposal, resizing, and reconnecting.
@@ -114,7 +114,7 @@ Negative controls remove each moon separately and prove its pixel assertion fail
 Tests copy each variant alone into an isolated HTTP root, reject missing or external requests,
 and verify both moons and dunes. They also exercise portrait and landscape layouts,
 component isolation, nested URL embedding, and the side-by-side comparison.
-Screenshots and logs belong in the ignored [test-results](test-results) directory.
+Screenshots and logs belong in the ignored `test-results` directory.
 
 Browser automation does not replace physical-device testing.
 
@@ -126,8 +126,12 @@ The renderer preserves its terrain, moon shaders, and storm composition.
 The GoodBytes Arrakis demo inspired the composition; its code, audio, and images are not included.
 
 The lunar texture is from Solar System Scope under CC BY 4.0.
-See [asset credits](src/assets/CREDITS.txt) and
-[the optional texture preparation recipe](scripts/prepare_texture.py).
+See [asset credits](CREDITS.txt) and
+[the optional texture preparation recipe](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-desert/scripts/prepare_texture.py).
 The recipe uses its own inline-pinned Pillow dependency and a locally downloaded original;
 normal builds use the included texture without Python or network access.
-The recipe writes its result to [src/assets/moon.jpg](src/assets/moon.jpg).
+The recipe writes its result to [src/assets/moon.jpg](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-desert/src/assets/moon.jpg).
+
+## License
+
+MIT applies to the original software code. Third-party textures and finished visual outputs incorporating them are licensed under CC BY 4.0. See [LICENSE](LICENSE) and [CREDITS](CREDITS.txt) for terms and attribution.

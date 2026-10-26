@@ -5,7 +5,7 @@ The WebGL scene includes slow rotation and moving clouds.
 
 [![Arrakis Orbit (1984)](svg/arrakis-orbit-1984.svg)](svg/arrakis-orbit-1984.svg)
 
-Open [index.html](index.html) to compare the three formats. Each runtime page
+Open [comparison page](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-orbit-1984/index.html) to compare the three formats. Each runtime page
 contains only the decorative background.
 
 | Format             | Standalone page                                    |
@@ -20,7 +20,7 @@ package installation, CDN, or external requests. Serve modules over HTTP.
 
 ## Development
 
-Requires Node.js 22 or newer. Install the pinned build dependencies:
+Requires Node.js 22 or newer. Run source commands from the repository root:
 
 ```shell
 npm ci
@@ -36,29 +36,29 @@ npx playwright install chromium webkit
 Regenerate the bundles and SVGs:
 
 ```shell
-npm run build
+npm run build --workspace=packages/arrakis-orbit-1984
 ```
 
 Verify generated source/output hashes without rebuilding:
 
 ```shell
-npm run check:generated
+npm run check:generated --workspace=packages/arrakis-orbit-1984
 ```
 
 Run the package's independent browser and Node tests:
 
 ```shell
-npm test
+npm test --workspace=packages/arrakis-orbit-1984
 ```
 
 Serve the comparison and variants on the printed URL. `PORT` overrides 4186:
 
 ```shell
-npm run serve
+npm run serve --workspace=packages/arrakis-orbit-1984
 ```
 
-Canonical code, styles, and textures live in [src](src). The
-[build manifest](build-manifest.json) records build inputs and outputs.
+Canonical code, styles, and textures live in [src](https://github.com/bkahlert/arrakis/tree/main/packages/arrakis-orbit-1984/src). The
+[build manifest](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-orbit-1984/build-manifest.json) records build inputs and outputs.
 Builds are local and offline after dependency/browser installation. SVG raster
 pixels can vary with Chromium and graphics drivers; freshness checks use recorded
 hashes and do not rerender artwork.
@@ -92,7 +92,7 @@ scene.resume();
 ```
 
 The WebGL page exposes `window.orbit.ready`, `setPaused(Boolean)`, and `dispose()`.
-The reusable [mountOrbit](src/renderer.js) accepts a container, optional
+The reusable [mountOrbit](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-orbit-1984/src/renderer.js) accepts a container, optional
 module-relative `assetBase`, and optional `paused`. It returns the same controller
 and its decorative root. No scene selector is supported.
 
@@ -123,7 +123,7 @@ The animated SVG contains CSS animation and no JavaScript or external requests.
 
 ## Attribution and tests
 
-Planet maps came from existing repository assets. [Credits](src/assets/CREDITS.txt)
+Planet maps came from existing repository assets. [Credits](CREDITS.txt)
 retain Solar System Scope / INOVE attribution, source URLs, adaptation details,
 and CC BY 4.0 licensing. This is artistic Dune-inspired artwork, not an
 astronomical map or an official licensed adaptation.
@@ -134,5 +134,9 @@ visibility, reduced motion, texture/compile/link failures, context restoration,
 multiple components, pause, resize, disconnect/reconnect, and delayed removal.
 They copy runtime variants into isolated HTTP roots and verify local requests,
 SVG self-containment, generated freshness, and fallback readiness. Screenshots are
-written to [test-results](test-results). Physical devices and GPU drivers remain
+written to `test-results`. Physical devices and GPU drivers remain
 outside the automated coverage.
+
+## License
+
+MIT applies to the original software code. Third-party textures and finished visual outputs incorporating them are licensed under CC BY 4.0. See [LICENSE](LICENSE) and [CREDITS](CREDITS.txt) for terms and attribution.
