@@ -1,0 +1,118 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  package-tests:
+    name: ${{ matrix.package }} / Chromium and WebKit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - arrakis-desert
+          - arrakis-desert-1984
+          - arrakis-orbit
+          - arrakis-orbit-1984
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install workspace dependencies
+        run: npm ci
+
+      - name: Install Chromium and WebKit
+        run: npx playwright install --with-deps chromium webkit
+
+      - name: Verify generated artifacts
+        run: npm run check:generated --workspace=packages/${{ matrix.package }}
+
+      - name: Build package
+        run: npm run build --workspace=packages/${{ matrix.package }}
+
+      - name: Test package
+        run: npm test --workspace=packages/${{ matrix.package }}
+
+      - name: Upload failure diagnostics
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ${{ matrix.package }}-failure-diagnostics
+          path: |
+            packages/${{ matrix.package }}/test-results/
+            packages/${{ matrix.package }}/playwright-report/
+          if-no-files-found: ignore
+          retention-days: 7
+
+  ci:
+    name: ci
+    if: always()
+    needs: package-tests
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Require every package test to pass
+        env:
+          PACKAGE_TEST_RESULT: ${{ needs.package-tests.result }}
+        run: test "$PACKAGE_TEST_RESULT" = success
+
+  deploy-pages:
+    name: Deploy comparison pages
+    if: >-
+      github.event_name == 'push' &&
+      (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/codex/arrakis-extraction')
+    needs:
+      - package-tests
+      - ci
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+
+      - name: Assemble comparison site
+        shell: bash
+        run: |
+          mkdir -p _site/packages
+          cp site/index.html _site/index.html
+          for package in arrakis-desert arrakis-desert-1984 arrakis-orbit arrakis-orbit-1984; do
+            destination="_site/packages/${package}"
+            mkdir -p "$destination"
+            cp "packages/${package}/index.html" "$destination/"
+            cp -R "packages/${package}/webgl" "packages/${package}/webcomponent" "packages/${package}/svg" "$destination/"
+          done
+          touch _site/.nojekyll
+          find _site -type f | sort
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: _site
+
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
