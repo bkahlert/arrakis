@@ -1,4 +1,4 @@
-# <img src="docs/logo.svg" align="left" width="36" height="36" alt="Arrakis orbit logo" style="margin-right: 0.5rem"> Arrakis [![License: MIT + CC BY 4.0](https://img.shields.io/badge/license-MIT%20%2B%20CC%20BY--4.0-29ABE2)](#license) [![Buy Me A Coffee](https://img.shields.io/static/v1?label=&message=%E2%98%95%20Buy%20Me%20A%20Coffee&color=FFDD00)](https://www.buymeacoffee.com/bkahlert)
+# <img src="docs/logo.svg" align="middle" width="36" height="36" alt="Arrakis orbit logo"> Arrakis [![License: MIT + CC BY 4.0](https://img.shields.io/badge/license-MIT%20%2B%20CC%20BY--4.0-29ABE2)](#license) [![Buy Me A Coffee](https://img.shields.io/static/v1?label=&message=%E2%98%95%20Buy%20Me%20A%20Coffee&color=FFDD00)](https://www.buymeacoffee.com/bkahlert)
 
 Animated backgrounds inspired by Dune's deserts and planetary orbits. Each background ships as a WebGL runtime, a native web component, an animated SVG, and a still SVG.
 
