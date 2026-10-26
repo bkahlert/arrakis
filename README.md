@@ -4,12 +4,12 @@ Animated backgrounds inspired by Dune's deserts and planetary orbits. Each backg
 
 ## Backgrounds
 
-| Background | Preview | Package guide | Comparison page |
-| --- | --- | --- | --- |
-| Arrakis Desert | [![Arrakis Desert](packages/arrakis-desert/svg/arrakis-desert.svg)](packages/arrakis-desert/svg/arrakis-desert.svg) | [README](packages/arrakis-desert/README.md) | [Compare formats](packages/arrakis-desert/index.html) |
-| Arrakis Desert (1984) | [![Arrakis Desert (1984)](packages/arrakis-desert-1984/svg/arrakis-desert-1984.svg)](packages/arrakis-desert-1984/svg/arrakis-desert-1984.svg) | [README](packages/arrakis-desert-1984/README.md) | [Compare formats](packages/arrakis-desert-1984/index.html) |
-| Arrakis Orbit | [![Arrakis Orbit](packages/arrakis-orbit/svg/arrakis-orbit.svg)](packages/arrakis-orbit/svg/arrakis-orbit.svg) | [README](packages/arrakis-orbit/README.md) | [Compare formats](packages/arrakis-orbit/index.html) |
-| Arrakis Orbit (1984) | [![Arrakis Orbit (1984)](packages/arrakis-orbit-1984/svg/arrakis-orbit-1984.svg)](packages/arrakis-orbit-1984/svg/arrakis-orbit-1984.svg) | [README](packages/arrakis-orbit-1984/README.md) | [Compare formats](packages/arrakis-orbit-1984/index.html) |
+| Background | npm package | Preview | Package guide | Comparison page |
+| --- | --- | --- | --- | --- |
+| Arrakis Desert | `@bkahlert/arrakis-desert` | [![Arrakis Desert](packages/arrakis-desert/svg/arrakis-desert.svg)](packages/arrakis-desert/svg/arrakis-desert.svg) | [README](packages/arrakis-desert/README.md) | [Compare formats](packages/arrakis-desert/index.html) |
+| Arrakis Desert (1984) | `@bkahlert/arrakis-desert-1984` | [![Arrakis Desert (1984)](packages/arrakis-desert-1984/svg/arrakis-desert-1984.svg)](packages/arrakis-desert-1984/svg/arrakis-desert-1984.svg) | [README](packages/arrakis-desert-1984/README.md) | [Compare formats](packages/arrakis-desert-1984/index.html) |
+| Arrakis Orbit | `@bkahlert/arrakis-orbit` | [![Arrakis Orbit](packages/arrakis-orbit/svg/arrakis-orbit.svg)](packages/arrakis-orbit/svg/arrakis-orbit.svg) | [README](packages/arrakis-orbit/README.md) | [Compare formats](packages/arrakis-orbit/index.html) |
+| Arrakis Orbit (1984) | `@bkahlert/arrakis-orbit-1984` | [![Arrakis Orbit (1984)](packages/arrakis-orbit-1984/svg/arrakis-orbit-1984.svg)](packages/arrakis-orbit-1984/svg/arrakis-orbit-1984.svg) | [README](packages/arrakis-orbit-1984/README.md) | [Compare formats](packages/arrakis-orbit-1984/index.html) |
 
 The comparison pages show the live WebGL, component, and SVG variants. The package guides explain integration, motion controls, fallbacks, and each background's rendering details.
 

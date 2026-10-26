@@ -1,0 +1,20 @@
+{
+  "name": "@bkahlert/arrakis-orbit-1984",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test --test-concurrency=1 tests/*.test.cjs",
+    "serve": "node scripts/serve.mjs",
+    "check:generated": "node --test tests/build.test.cjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "author": "Bj\u00f6rn Kahlert <mail@bkahlert.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bkahlert/arrakis.git",
+    "directory": "packages/arrakis-orbit-1984"
+  }
+}

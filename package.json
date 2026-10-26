@@ -1,0 +1,23 @@
+{
+  "name": "arrakis",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Dune-inspired animated backgrounds for the web, in WebGL, web components, and SVG.",
+  "author": "Björn Kahlert <mail@bkahlert.com>",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces --if-present"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "playwright": "1.63.0",
+    "pngjs": "7.0.0",
+    "sharp": "0.35.5"
+  }
+}
