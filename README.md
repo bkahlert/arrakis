@@ -22,9 +22,11 @@ Regenerate the repository logo with `node tools/build-logo.mjs`.
 ```shell
 npm install
 npm run build --workspace=packages/arrakis-desert
+npm test
 ```
 
 Run `npm run build --workspaces --if-present` to build every background.
+`npm test` runs the test suites for all four background workspaces.
 
 ## Credits and licenses
 

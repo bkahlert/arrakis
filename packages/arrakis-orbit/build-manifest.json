@@ -1,5 +1,5 @@
 {
-  "package.json": "28b84adce3a0a8abd74cec690f782b4c220fd7f388a03e3a044b1097e8a3cd25",
+  "package.json": "1fd3327f1cdc287dd8298102f8a6af090349f97d0e42601a2b1a083c8cc157fc",
   "../../package-lock.json": "db59d9e4893fefa5faecbdf773c15d4fa41b1e31ac1c6daf206d19a55fd1f4ec",
   "../../tools/background-build.mjs": "2aca4a991a0eea6c61feeccc0395f479eb6fd12bed4706da9f6fbde8adf46e18",
   "src/page.js": "ff11443e04ae283ee01489d78351178100b0400274e6a8b6caa42005abcf0ab5",

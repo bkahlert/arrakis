@@ -12,7 +12,8 @@
     "node": ">=22"
   },
   "scripts": {
-    "build": "npm run build --workspaces --if-present"
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces"
   },
   "devDependencies": {
     "esbuild": "0.28.2",

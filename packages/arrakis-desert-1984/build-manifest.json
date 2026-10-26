@@ -8,7 +8,7 @@
     "scripts/build.mjs": "2c52b571f666137b7c5b5340bdb648fe1f6a9b48acef75fc341e40ab526a9305",
     "scripts/build-svg.mjs": "b2c816cc1c9a1eb86e6d6e19db8761560e08c22b6526f0e0ad4a6ff0b7439a56",
     "scripts/serve.mjs": "c8d34c604b380224546de7c63d0e80d06d66f40d75ccdcd376fc53bb7c9297f6",
-    "package.json": "dd467040608dec675ab6c44999b47845396defc215a9cca48bce38a41ed4d007",
+    "package.json": "9911be57c9c35163dc6e1e7ca1d852988a82c9d92d6dfc54c63987dddbccf417",
     "../../package-lock.json": "db59d9e4893fefa5faecbdf773c15d4fa41b1e31ac1c6daf206d19a55fd1f4ec",
     "../../tools/background-build.mjs": "2aca4a991a0eea6c61feeccc0395f479eb6fd12bed4706da9f6fbde8adf46e18",
     "index.html": "88ed73f7fd54e2747b1df151329c03685d6f35720f2f760cfae06d6d6b4811fa",
