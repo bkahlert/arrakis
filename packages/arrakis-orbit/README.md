@@ -5,7 +5,7 @@ a small moon, and a layered starfield.
 
 [![Arrakis Orbit](svg/arrakis-orbit.svg)](svg/arrakis-orbit.svg)
 
-Open [comparison page](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-orbit/index.html) to compare
+Open the [comparison page](https://bkahlert.github.io/arrakis/packages/arrakis-orbit/) to compare
 three formats side by side. The comparison scrolls horizontally on narrow screens.
 Live iframe previews follow frame focus; click a live preview to animate it.
 Each variant page contains only its background:

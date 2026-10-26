@@ -5,7 +5,7 @@ The upper moon sits right; the lower moon sits left behind the dunes.
 
 [![Arrakis Desert (1984)](svg/arrakis-desert-1984.svg)](svg/arrakis-desert-1984.svg)
 
-Open the [comparison](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-desert-1984/index.html) to compare the three formats.
+Open the [comparison](https://bkahlert.github.io/arrakis/packages/arrakis-desert-1984/) to compare the three formats.
 Each distribution folder can be copied into an unrelated HTTP root:
 
 | Format           | Entry                                              | Integration                                   |

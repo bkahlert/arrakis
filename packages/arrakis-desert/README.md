@@ -5,7 +5,7 @@ This directory is a standalone project. Copy it anywhere without its parent repo
 
 [![Arrakis Desert](svg/arrakis-desert.svg)](svg/arrakis-desert.svg)
 
-Open [comparison page](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-desert/index.html) to compare all three variants side by side.
+Open the [comparison page](https://bkahlert.github.io/arrakis/packages/arrakis-desert/) to compare all three variants side by side.
 The labeled iframe panels remain in one row and scroll horizontally on narrow screens.
 Live iframe previews follow frame focus; click a live preview to animate it.
 

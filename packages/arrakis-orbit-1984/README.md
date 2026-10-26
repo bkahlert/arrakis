@@ -5,7 +5,7 @@ The WebGL scene includes slow rotation and moving clouds.
 
 [![Arrakis Orbit (1984)](svg/arrakis-orbit-1984.svg)](svg/arrakis-orbit-1984.svg)
 
-Open [comparison page](https://github.com/bkahlert/arrakis/blob/main/packages/arrakis-orbit-1984/index.html) to compare the three formats. Each runtime page
+Open the [comparison page](https://bkahlert.github.io/arrakis/packages/arrakis-orbit-1984/) to compare the three formats. Each runtime page
 contains only the decorative background.
 
 | Format             | Standalone page                                    |
