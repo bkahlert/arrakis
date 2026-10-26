@@ -62,26 +62,28 @@ test('freshness checks reject changed sources and missing generated outputs with
   const os = require('node:os');
   const { spawnSync } = require('node:child_process');
   const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'desert-1984-freshness-'));
+  const temporaryWorkspace = path.join(temporary, 'packages', 'arrakis-desert-1984');
   const root = path.join(__dirname, '..');
   const manifest = JSON.parse(fs.readFileSync(path.join(root, 'build-manifest.json'), 'utf8'));
   try {
     for (const file of [...Object.keys(manifest.sha256), 'build-manifest.json', 'tests/package.test.cjs']) {
-      fs.mkdirSync(path.dirname(path.join(temporary, file)), { recursive: true });
-      fs.copyFileSync(path.join(root, file), path.join(temporary, file));
+      const destination = path.resolve(temporaryWorkspace, file);
+      fs.mkdirSync(path.dirname(destination), { recursive: true });
+      fs.copyFileSync(path.resolve(root, file), destination);
     }
-    const run = () => spawnSync(process.execPath, ['--test', '--test-name-pattern=build manifest', 'tests/package.test.cjs'], { cwd: temporary, encoding: 'utf8',
+    const run = () => spawnSync(process.execPath, ['--test', '--test-name-pattern=build manifest', 'tests/package.test.cjs'], { cwd: temporaryWorkspace, encoding: 'utf8',
       env: Object.fromEntries(Object.entries(process.env).filter(([name]) => name !== 'NODE_TEST_CONTEXT')) });
     const current = run();
     assert.equal(current.status, 0, current.stdout);
-    fs.appendFileSync(path.join(temporary, 'src/scene.css'), '\n/* stale source */\n');
+    fs.appendFileSync(path.join(temporaryWorkspace, 'src/scene.css'), '\n/* stale source */\n');
     const stale = run();
     assert.notEqual(stale.status, 0);
     assert.match(stale.stdout, /src\/scene.css requires npm run build/u);
-    fs.copyFileSync(path.join(root, 'src/scene.css'), path.join(temporary, 'src/scene.css'));
-    fs.unlinkSync(path.join(temporary, 'svg/arrakis-desert-1984.svg'));
+    fs.copyFileSync(path.join(root, 'src/scene.css'), path.join(temporaryWorkspace, 'src/scene.css'));
+    fs.unlinkSync(path.join(temporaryWorkspace, 'svg/arrakis-desert-1984.svg'));
     const missing = run();
     assert.notEqual(missing.status, 0);
-    assert.equal(fs.existsSync(path.join(temporary, 'svg/arrakis-desert-1984.svg')), false);
+    assert.equal(fs.existsSync(path.join(temporaryWorkspace, 'svg/arrakis-desert-1984.svg')), false);
   } finally {
     fs.rmSync(temporary, { recursive: true, force: true });
   }

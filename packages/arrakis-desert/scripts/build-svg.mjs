@@ -1,9 +1,9 @@
-import { createHash } from 'node:crypto';
 import { chromium } from 'playwright';
 import sharp from 'sharp';
-import { copyFile, readFile, writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { Buffer } from 'node:buffer';
+import { copyRuntimeAssets, writeBuildManifest } from '../../../tools/background-build.mjs';
 
 const directory = new URL('../', import.meta.url);
 const browser = await chromium.launch();
@@ -152,17 +152,15 @@ await writeFile(new URL('svg/arrakis-desert-still.svg', directory), composeSvg(f
 const sizeMiB = (Buffer.byteLength(svg) / 1024 / 1024).toFixed(2);
 console.log(`Created arrakis-desert.svg: ${sizeMiB} MiB; ${farCloudCount + nearCloudCount} dust clouds; ${clouds.length} storm layers; ${sampleCount} motion intervals; ${compositions.length} responsive compositions.`);
 
-for (const variant of ['webgl', 'webcomponent']) {
-  await copyFile(new URL('svg/arrakis-desert-still.svg', directory), new URL(`${variant}/arrakis-desert-still.svg`, directory));
-}
+await copyRuntimeAssets(fileURLToPath(directory), ['svg/arrakis-desert-still.svg'], [
+  'webgl',
+  'webcomponent',
+]);
 
 const files = ['src/scene.js', 'src/scene.css', 'src/component.js', 'src/assets/moon.jpg', 'src/assets/CREDITS.txt',
-  'scripts/build.mjs', 'scripts/build-svg.mjs', 'package.json', '../../package-lock.json',
+  'scripts/build.mjs', 'scripts/build-svg.mjs', 'package.json',
+  '../../package-lock.json', '../../tools/background-build.mjs',
   'webgl/scene.js', 'webgl/scene.css', 'webgl/assets/moon.jpg', 'webgl/assets/CREDITS.txt', 'webgl/arrakis-desert-still.svg',
   'webcomponent/arrakis-desert.js', 'webcomponent/assets/moon.jpg', 'webcomponent/assets/CREDITS.txt',
   'webcomponent/arrakis-desert-still.svg', 'svg/arrakis-desert.svg', 'svg/arrakis-desert-still.svg'];
-const sha256 = {};
-for (const file of files) {
-  sha256[file] = createHash('sha256').update(await readFile(new URL(file, directory))).digest('hex');
-}
-await writeFile(new URL('build-manifest.json', directory), JSON.stringify({ sha256 }, null, 2) + '\n');
+await writeBuildManifest(fileURLToPath(directory), files, { envelope: 'sha256' });

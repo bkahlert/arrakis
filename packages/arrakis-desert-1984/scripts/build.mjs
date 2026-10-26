@@ -1,20 +1,17 @@
-import { build } from 'esbuild';
-import { copyFile, cp, mkdir } from 'node:fs/promises';
+import { buildBundles, copyRuntimeAssets } from '../../../tools/background-build.mjs';
 import { fileURLToPath } from 'node:url';
 
-const directory = new URL('../', import.meta.url);
-for (const variant of ['webgl', 'webcomponent']) {
-  await mkdir(new URL(`${variant}/assets/`, directory), { recursive: true });
-  await cp(new URL('src/assets/', directory), new URL(`${variant}/assets/`, directory), { recursive: true });
-}
-for (const file of ['scene.js', 'scene.css']) {
-  await copyFile(new URL(`src/${file}`, directory), new URL(`webgl/${file}`, directory));
-}
-await build({
-  absWorkingDir: fileURLToPath(directory),
+const root = fileURLToPath(new URL('../', import.meta.url));
+await copyRuntimeAssets(root, ['src/assets/moon.jpg', 'src/assets/CREDITS.txt'], [
+  'webgl/assets',
+  'webcomponent/assets',
+]);
+await copyRuntimeAssets(root, ['src/scene.js', 'src/scene.css'], ['webgl']);
+await buildBundles([{
+  absWorkingDir: root,
   entryPoints: ['src/component.js'],
   outfile: 'webcomponent/arrakis-desert-1984.js',
   bundle: true,
   format: 'esm',
   loader: { '.css': 'text' },
-});
+}]);
