@@ -1,4 +1,6 @@
 .DS_Store
-.idea/
+.idea/*
+!.idea/
+!.idea/icon.svg
 *.iml
 node_modules/

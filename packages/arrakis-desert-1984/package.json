@@ -1,0 +1,30 @@
+{
+  "name": "@bkahlert/arrakis-desert-1984",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Standalone Arrakis desert backgrounds: WebGL, native web component, and SVG",
+  "scripts": {
+    "build": "node scripts/build.mjs && node scripts/build-svg.mjs",
+    "test": "node --test --test-concurrency=1 tests/*.test.cjs",
+    "serve": "node scripts/serve.mjs",
+    "check:generated": "node --test --test-name-pattern=\"build manifest\" tests/package.test.cjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "author": "Bj\u00f6rn Kahlert <mail@bkahlert.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bkahlert/arrakis.git",
+    "directory": "packages/arrakis-desert-1984"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "files": [
+    "webgl",
+    "webcomponent",
+    "svg",
+    "README.md",
+    "LICENSE",
+    "CREDITS.txt"
+  ]
+}
