@@ -17,6 +17,9 @@ jobs:
   package-tests:
     name: ${{ matrix.package }} / Chromium and WebKit
     runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.63.0-noble
+      options: --user 1001
     timeout-minutes: 45
     strategy:
       fail-fast: false
@@ -37,9 +40,6 @@ jobs:
 
       - name: Install workspace dependencies
         run: npm ci
-
-      - name: Install Chromium and WebKit
-        run: npx playwright install --with-deps chromium webkit
 
       - name: Verify generated artifacts
         run: npm run check:generated --workspace=packages/${{ matrix.package }}
